@@ -4,6 +4,7 @@ let token;
 
 test.beforeAll( async ()=>
 {
+  //Login API
   const apiContext = await request.newContext();
   const logInResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login",{
     data:loginPayLoad

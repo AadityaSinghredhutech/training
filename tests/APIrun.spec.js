@@ -37,6 +37,8 @@ test('Client App login', async ({page})=>
     window.localStorage.setItem('token',value);
   },token);
 
+  
+
 const productName='ZARA COAT 3'
 const products=page.locator(".card-body");
 
