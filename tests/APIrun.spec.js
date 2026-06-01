@@ -57,6 +57,6 @@ for(let i=0; i<rowCount;i++){
     break;
   }
 }
-await page.pause();
+
 
 })
