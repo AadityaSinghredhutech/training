@@ -1,66 +1,74 @@
-const {test,expect} = require('@playwright/test')
+const { test, expect } = require('@playwright/test');
 
-test('GetBy Rewrite', async ({page})=>
-{
-   
-const email="hanuchizuru@gmail.com";
-const password ="Hanusingh89@";
-const productName='ZARA COAT 3'
-const products=page.locator(".card-body");
+test('GetBy Rewrite', async ({ page }) => {
 
-await page.goto("https://rahulshettyacademy.com/client");
+    const email = "hanuchizuru@gmail.com";
+    const password = "Hanusingh89@@@@";
+    const productName = "ZARA COAT 3";
 
-await page.getByPlaceholder("email@example.com").fill(email);
-await page.getByPlaceholder("enter your passsword").fill(password);
-await page.getByRole('button',{name:"Login"}).click();
+    await page.goto("https://rahulshettyacademy.com/client");
 
-await page.waitForLoadState('networkidle');
-await page.locator(".card-body b").first().waitFor();
+    await page.getByPlaceholder("email@example.com").fill(email);
+    await page.getByPlaceholder("enter your passsword").fill(password);
+    await page.getByRole('button', { name: "Login" }).click();
 
-const titles=await page.locator(".card-body b").allTextContents();
-console.log(titles);
+    await page.waitForLoadState('networkidle');
 
-await page.locator(".card-body").filter({hasText:"ZARA COAT 3"}).getByRole('Button',{name:"Add to Cart"}),click();
+    const titles = await page.locator(".card-body b").allTextContents();
+    console.log(titles);
 
-await page.getByRole("listitem").getByRole("button", {name:"Cart"}).click();
+    await page
+        .locator(".card-body")
+        .filter({ hasText: productName })
+        .getByRole("button", { name: "Add To Cart" })
+        .click();
 
-await page.locator("div li").first().waitFor();
+    await page.getByRole("listitem")
+        .getByRole("button", { name: "Cart" })
+        .click();
 
-await expect(page.getByText("ZARA COAT 3")).toBeVisible();
+    await page.locator("div li").first().waitFor();
 
-await page.getByRole("button", {name:"Checkout"}).click();
+    await expect(page.getByText(productName)).toBeVisible();
 
-await page.getByPlaceholder("Select Country")
-.pressSequentially("ind",{delay:150});
+    await page.getByRole("button", { name: "Checkout" }).click();
 
-await page.getByRole("button",{name:"India"}),nth(1).click();
+    await page.getByPlaceholder("Select Country")
+        .pressSequentially("ind", { delay: 150 });
 
-await expect(page.locator(".user__name [type='text']").first())
-.toHaveText("hanuchizuru@gmail.com");
+    await page.locator(".ta-results").waitFor();
 
-await page.getByText("PLACE ORDER").click();
+    await page.getByRole("button", { name: "India" }).nth(1).click();
 
-await expect(page.locator(".hero-primary"))
-.toHaveText(" Thankyou for the order. ");
+  await expect(
+    page.locator(".user__name label").first()
+).toHaveText(email);
 
-const orderID=await page.locator(".em-spacer-1 .ng-star-inserted")
-.textContent();
+    await page.getByText("PLACE ORDER").click();
 
-console.log(orderID);
+    await expect(page.locator(".hero-primary"))
+        .toHaveText(" Thankyou for the order. ");
 
-await page.locator("button[routerlink*='myorders']").click();
-await page.locator("tbody").first().waitFor();
+    const orderID = await page.locator(".em-spacer-1 .ng-star-inserted")
+        .textContent();
 
-const rows = await page.locator("tbody tr");
-const rowCount = await rows.count();
-for(let i=0; i<rowCount;i++){
-  const rowOrderID=await rows.nth(i).locator("th").textContent();
-  if(orderID.includes(rowOrderID)){
-    await rows.nth(i).locator("button").first().click();
-    break;
-  }
-}
-await page.pause();
+    console.log(orderID);
 
+    await page.locator("button[routerlink*='myorders']").click();
 
-})
+    await page.locator("tbody").first().waitFor();
+
+    const rows = page.locator("tbody tr");
+    const rowCount = await rows.count();
+
+    for (let i = 0; i < rowCount; i++) {
+        const rowOrderID = await rows.nth(i).locator("th").textContent();
+
+        if (orderID.trim().includes(rowOrderID.trim())) {
+            await rows.nth(i).locator("button").first().click();
+            break;
+        }
+    }
+
+    await page.pause();
+});

@@ -8,7 +8,7 @@ test('Client App login', async ({page})=>
 {
   const poManager = new POmanager(page);
     const email ="hanuchizuru@gmail.com";
-    const password ="Hanusingh89@";
+    const password ="Hanusingh89@@@@";
 const productName='ZARA COAT 3';
 const products=page.locator(".card-body");
 const loginPage = poManager.getLoginPage();
