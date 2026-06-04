@@ -25,6 +25,7 @@ jobs:
           npx playwright test tests/secludedCartProg.spec.js 
           npx playwright test tests/APIrun.spec.js 
           npx cucumber-js features/Ecommerce2.feature 
+          npx playwright test tests/E2ECartGitSec.spec.js
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
