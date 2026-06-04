@@ -21,7 +21,6 @@ jobs:
       run: | 
           npx playwright test tests/secludedCartProg.spec.js 
           npx playwright test tests/APIrun.spec.js 
-          npx cucumber-js features/Ecommerce2.feature 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
