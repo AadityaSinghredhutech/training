@@ -1,0 +1,10 @@
+Waiting for products...
+Products found: [ 'ADIDAS ORIGINAL', 'ZARA COAT 3', 'iphone 13 pro' ]
+Checking: ADIDAS ORIGINAL
+Checking: ZARA COAT 3
+Found product. Clicking Add To Cart
+Add To Cart clicked
+Finished searchProductAddCart()
+About to click cart
+Cart clicked
+Cart page loaded

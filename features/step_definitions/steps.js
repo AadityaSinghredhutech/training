@@ -7,13 +7,6 @@ setDefaultTimeout(60 * 1000);
 Given(
   'a login to Ecommerce application with {string} and {string}',
   async function (email, password) {
-
-    this.browser = await firefox.launch();
-    this.context = await this.browser.newContext();
-    this.page = await this.context.newPage();
-
-    this.poManager = new POmanager(this.page);
-
     const loginPage = this.poManager.getLoginPage();
 
     await loginPage.goTo();

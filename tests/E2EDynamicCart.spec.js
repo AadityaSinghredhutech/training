@@ -30,7 +30,7 @@ test('@Webst Client App login', async ({ page }) => {
    expect(bool).toBeTruthy();
    await page.locator("text=Checkout").click();
  
-  await page.getByPlaceholder('Select Country').pressSequentially("ind", { delay: 150 }) 
+  await page.getByPlaceholder('Select Country').pressSequentially("ind", { delay: 150 }) ;
    const dropdown = page.locator(".ta-results");
    await dropdown.waitFor();
    const optionsCount = await dropdown.locator("button").count();
