@@ -1,8 +1,5 @@
-const {test, expect, request} = require('@playwright/test')
-const {POmanager}= require('../pageobject/POmanager');
-const {CheckoutPage} = require ('../pageobject/CheckoutPage');
-const {placeOrder}=require('../pageobject/placeOrder');
-
+import {test, expect, request} from '@playwright/test';
+import {POmanager} from '../pageobjectts/POmanager';
 
 test('Client App login', async ({page})=>
 {
@@ -38,7 +35,7 @@ await expect(page.locator(".user__name [type='text']").first())
 await page.locator(".action__submit").click();
 await expect(page.locator(".hero-primary"))
 .toHaveText(" Thankyou for the order. ");
-const orderID=await page.locator(".em-spacer-1 .ng-star-inserted")
+const orderID:any=await page.locator(".em-spacer-1 .ng-star-inserted")
 .textContent();
 console.log(orderID);
 await page.locator("button[routerlink*='myorders']").click();
