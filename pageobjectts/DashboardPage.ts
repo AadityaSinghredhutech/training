@@ -64,5 +64,3 @@ export class DashboardPage {
         console.log("Cart page loaded");
     }
 }
-
-module.exports = { DashboardPage };

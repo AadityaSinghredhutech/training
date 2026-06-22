@@ -31,5 +31,3 @@ export class CheckoutPage {
         return this.page.locator(`h3:has-text("${productName}")`);
     }
 }
-
-module.exports = {CheckoutPage};
