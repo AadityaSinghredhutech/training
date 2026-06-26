@@ -34,11 +34,20 @@ test('Employee Add',async ({page})=>{
 
     //await page.getByPlaceholder('Type for hints...').fill(`${firstName} ${lastName}`);
     await page.locator('.oxd-autocomplete-text-input input').nth(0).fill(`${firstName} ${lastName}`);
-    await console.log(await page.locator('.oxd-autocomplete-dropdown').count());
+    await page.locator('.oxd-autocomplete-dropdown').filter({hasText:`${firstName} ${lastName}`}).click();
+    
 
    // await page.locator('.oxd-autocomplete-dropdown').nth(1).click();
     await page.locator('input.oxd-input').nth(1).fill("11111");
+    
     await page.locator('[type="submit"]').click();
+    await page.locator('button.oxd-icon-button.oxd-table-cell-action-space i.bi-trash').waitFor();
+    await page.locator('button.oxd-icon-button.oxd-table-cell-action-space i.bi-trash').click();
+    await page.locator('button.oxd-button--label-danger').click();
+
+    await page.locator('.oxd-userdropdown-name').click();
+    await page.locator(' a.oxd-userdropdown-link').filter({hasText:"Logout"}).click();
+    await page.pause();
 
 
 })
